@@ -22,5 +22,5 @@
   $mail->Password = "xxxx";
   $mail->SetFrom("the42ndturtle@gmail.com");
   $mail->Subject = "Test";
-  $mail->AddAddress($email);
+
 ?>

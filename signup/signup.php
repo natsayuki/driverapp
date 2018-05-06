@@ -2,7 +2,7 @@
   include($_SERVER['DOCUMENT_ROOT']."/driverapp/includes/include.php");
   $email = mysqli_real_escape_string($conn, $_POST['email']);
 
-
+  $mail->AddAddress($email);
   function newAuthCode($length = 16) {
   	$str = "";
   	$characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
