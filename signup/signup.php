@@ -2,6 +2,21 @@
   include($_SERVER['DOCUMENT_ROOT']."/driverapp/includes/include.php");
   $email = mysqli_real_escape_string($conn, $_POST['email']);
 
+
+  function newAuthCode($length = 16) {
+  	$str = "";
+  	$characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
+  	$max = count($characters) - 1;
+  	for ($i = 0; $i < $length; $i++) {
+  		$rand = mt_rand(0, $max);
+  		$str .= $characters[$rand];
+  	}
+  	return $str;
+  }
+
+  $tempAuthCode = newAuthCode();
+  $tempToken = newAuthCode(6);
+
   $mail = new PHPMailer\PHPMailer\PHPMailer();
   $mail->IsSMTP(); // enable SMTP
 
@@ -29,6 +44,8 @@
 
    if(!$mail->Send()) {
       echo "Mailer Error: " . $mail->ErrorInfo;
+      $sql = 'INSERT INTO users (`email`, `token`, `verified`, `auth_code`) VALUES ("'.$email.'", "'.$tempToken.'", "false", "'.$tempAuthCode.'")';
+      $conn->query($sql);
    } else {
       echo "Message has been sent";
    }
