@@ -8,7 +8,7 @@
   $body = '
   <center>
     <h3 style="color: blue">Please click the following link to verify your email for the CFS campus sign out website</h3>
-    <div style="width: 50%; height: 20%; background-color: lightgrey;">
+    <div style="height: 20%; background-color: lightgrey; display: inline-block;">
       <a href="http://42turtle.com/driverapp"><h1>Verify email</h1></a>
     </div>
   </center>
