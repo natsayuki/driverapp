@@ -21,11 +21,11 @@
       }
       else{
         $_SESSION['token'] = $token;
-        echo '<h1 align="center">successfuly authenticated this device</h1>';
+        echo '<h1 align="center">successfuly authenticated this device: '.$token.'</h1>';
       }
     }
     else{
-      echo '<h1 align="center"invalid or expired authentication code</h1>';
+      echo '<h1 align="center">invalid or expired authentication code</h1>';
     }
 
   }
