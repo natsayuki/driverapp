@@ -41,7 +41,7 @@ $(document).ready(function(){
     }, 2000);
   }
 
-  $.ajax('creds.php', {
+  $.ajax('php/creds.php', {
     type: "POST",
     data: {type: "fetch"},
     success: function(data){
