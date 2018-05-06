@@ -1,5 +1,5 @@
 <?php
-  include($_SERVER['DOCUMENT_ROOT']."/driverApp/includes/include.php");
+  include($_SERVER['DOCUMENT_ROOT']."/driverapp/includes/include.php");
 
   $type = $_POST['type'];
 
