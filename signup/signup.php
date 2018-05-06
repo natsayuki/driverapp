@@ -28,7 +28,7 @@
   $mail->Subject = "Test";
   $mail->AddAddress($email);
 
-  $sql = 'SELECT * FROM users WHERE `email`="'.email.'"';
+  $sql = 'SELECT * FROM users WHERE `email`="'.$email.'"';
   $results = $conn->query($sql);
   if($results->num_rows > 0){
     $tempAuthCode = ($results->fetch_assco())['auth_code'];
