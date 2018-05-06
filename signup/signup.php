@@ -14,39 +14,69 @@
   	return $str;
   }
 
-  $tempAuthCode = newAuthCode();
-  $tempToken = newAuthCode(6);
-
   $mail = new PHPMailer\PHPMailer\PHPMailer();
-  $mail->IsSMTP(); // enable SMTP
-
-  $body = '
-  <center>
-    <h3 style="color: blue">Please click the following link to verify your email for the CFS campus sign out website</h3>
-    <div style="height: 20%; background-color: lightgrey; display: inline-block;">
-      <a href="http://42turtle.com/driverapp"><h1>Verify email</h1></a>
-    </div>
-  </center>
-  ';
-
-  $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-  $mail->SMTPAuth = true; // authentication enabled
-  $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+  $mail->IsSMTP();
+  $mail->SMTPDebug = 1;
+  $mail->SMTPAuth = true;
+  $mail->SMTPSecure = 'ssl';
   $mail->Host = "smtp.gmail.com";
-  $mail->Port = 465; // or 587
+  $mail->Port = 465;
   $mail->IsHTML(true);
   $mail->Username = "the42ndturtle@gmail.com";
   $mail->Password = "xxxx";
   $mail->SetFrom("the42ndturtle@gmail.com");
   $mail->Subject = "Test";
-  $mail->Body = $body;
   $mail->AddAddress($email);
 
-   if(!$mail->Send()) {
+  $sql = 'SELECT * FROM users WHERE `email`="'.email.'"';
+  $results = $conn->query($sql);
+  if($results->num_rows > 0){
+    $tempAuthCode = ($results->fetch_assco())['auth_code'];
+    $verified = ($results->fetch_assoc())['verified'];
+    if($verified == 'true'){
+      echo "email already in use";
+    }
+    else{
+      echo "resending verification email";
+      $body = '
+      <center>
+      <h3 style="color: blue">Please click the following link to verify your email for the CFS campus sign out website</h3>
+      <div style="height: 20%; background-color: lightgrey; display: inline-block;">
+      <a href="http://42turtle.com/driverapp/auth?a='.$tempAuthCode.'"><h1>Verify email</h1></a>
+      </div>
+      </center>
+      ';
+      $mail->Body = $body;
+      if(!$mail->Send()){
+        echo "Mailer Error:".$mail->ErrorInfo;
+      }
+      else{
+        echo "Message has been sent";
+      }
+    }
+  }
+  else{
+    $tempAuthCode = newAuthCode();
+    $tempToken = newAuthCode(6);
+
+    $body = '
+    <center>
+    <h3 style="color: blue">Please click the following link to verify your email for the CFS campus sign out website</h3>
+    <div style="height: 20%; background-color: lightgrey; display: inline-block;">
+    <a href="http://42turtle.com/driverapp/auth?a='.$tempAuthCode.'"><h1>Verify email</h1></a>
+    </div>
+    </center>
+    ';
+    $mail->Body = $body;
+
+
+    if(!$mail->Send()) {
       echo "Mailer Error: " . $mail->ErrorInfo;
-   } else {
+    } else {
       echo "Message has been sent";
       $sql = 'INSERT INTO users (`email`, `token`, `verified`, `auth_code`) VALUES ("'.$email.'", "'.$tempToken.'", "false", "'.$tempAuthCode.'")';
       $conn->query($sql);
-   }
+    }
+  }
+
 ?>
