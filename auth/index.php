@@ -4,6 +4,7 @@
   $key;
 
   $auth_code = mysqli_real_escape_string($conn, $_GET['a']);
+  echo $auth_code;
   $sql = 'SELECT * FROM users WHERE `auth_code`="'.$auth_code.'"';
   $results = $conn->query($sql);
   if($conn->connect_error){
@@ -22,6 +23,9 @@
         $_SESSION['token'] = $token;
         echo "successfuly authenticated";
       }
+    }
+    else{
+      echo "thats not a code";
     }
 
   }
