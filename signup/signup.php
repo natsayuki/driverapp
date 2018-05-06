@@ -44,9 +44,9 @@
 
    if(!$mail->Send()) {
       echo "Mailer Error: " . $mail->ErrorInfo;
-      $conn->query($sql);
    } else {
       echo "Message has been sent";
       $sql = 'INSERT INTO users (`email`, `token`, `verified`, `auth_code`) VALUES ("'.$email.'", "'.$tempToken.'", "false", "'.$tempAuthCode.'")';
+      $conn->query($sql);
    }
 ?>
