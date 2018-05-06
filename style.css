@@ -58,3 +58,11 @@ input[type=text]{
   justify-content: center;
   align-items: center;
 }
+#settingsText{
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}
+.accLink{
+  display: inline-block;
+}

@@ -1,12 +1,7 @@
 <?php
-  $server = "localhost";
-  $username = "root";
-  $password = "";
-  $db = "drive";
-  $conn = new mysqli($server, $username, $password, $db);
+  include($_SERVER['DOCUMENT_ROOT']."/driverApp/includes/include.php");
 
   $type = $_POST['type'];
-  $name = mysqli_real_escape_string($conn, $_POST['name']);
 
   date_default_timezone_set('America/New_York');
   $date = date('m-d-y');

@@ -10,11 +10,9 @@
   <body>
     <div id="resultWrapper"><h1 id="resultText"></h1></div>
     <div id="leavingContentWrapper" class="contentWrapper">
-      <div class="doneButton"><h1>done</h1></div>
+      <div class="doneButton"><h1>Done</h1></div>
       <center>
         <form id="leavingForm" method="POST" action="" class="form" submitType="leave">
-          <h1>Name</h1>
-          <input type="text" name="name" id="nameLeaveIn" />
           <h1>Reason</h1>
           <textarea id="reasonIn"></textarea>
           <br />
@@ -22,22 +20,21 @@
         </form>
       </center>
     </div>
-    <div id="returningContentWrapper" class="contentWrapper">
-      <div class="doneButton"><h1>done</h1></div>
+    <div id="settingsWrapper" class="contentWrapper">
+      <div class="doneButton"><h1>Done</h1></div>
       <center>
-        <form id="returningForm" method="POST" action="" class="form" submitType="return">
-          <h1>Name</h1>
-          <input type="text" name="name" id="nameReturnIn" />
-          <br />
-          <button action="submit">Submit</button>
-        </form>
+        <div id="loginSignupWrapper">
+          <a href="" class="accLink"><h1>log in</h1></a>
+          <a href="" class="accLink"><h1>sign up</h1></a>
+        </div>
       </center>
     </div>
+    <a href="" id="settingsText"><h1>Settings</h1></a>
     <div id="leavingWrapper" class="mainButton">
-      <h1>I'm leaving</h1>
+      <h1>Leaving</h1>
     </div>
     <div id="returningWrapper" class="mainButton">
-      <h1>I'm returning</h1>
+      <h1>Returning</h1>
     </div>
   </body>
 </html>
