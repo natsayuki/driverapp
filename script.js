@@ -10,6 +10,7 @@ $(document).ready(function(){
   const resultText = $('#resultText');
   const settingsText = $('#settingsText');
   const settingsContent = $('#settingsWrapper');
+  let token ='';
 
   reasonIn.val('');
 
@@ -39,6 +40,16 @@ $(document).ready(function(){
       resultWrapper.animate({'top': '-10%', 'opacity': '0'}, 200);
     }, 2000);
   }
+
+  $.ajax('creds.php', {
+    type: "POST",
+    data: {type: "fetch"},
+    success: function(data){
+      if(data == "no token") console.log("not logged in");
+      else token = data;
+      console.log(token);
+    }
+  });
 
   form.submit(function(e){
     e.preventDefault();
