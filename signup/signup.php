@@ -5,6 +5,15 @@
   $mail = new PHPMailer\PHPMailer\PHPMailer();
   $mail->IsSMTP(); // enable SMTP
 
+  $body = '
+  <center>
+    <h3 style="color: blue">Please click the following link to verify your email for the CFS campus sign out website</h3>
+    <div style="width: 50%; height: 20%; background-color: lightgrey;">
+      <a href="http://42turtle.com/driverapp"><h1>Verify email</h1></a>
+    </div>
+  </center>
+  ';
+
   $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
   $mail->SMTPAuth = true; // authentication enabled
   $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
@@ -15,7 +24,7 @@
   $mail->Password = "xxxx";
   $mail->SetFrom("the42ndturtle@gmail.com");
   $mail->Subject = "Test";
-  $mail->Body = "<h1 style="color: blue;">try this <em>for</em> size</h1>";
+  $mail->Body = $body;
   $mail->AddAddress($email);
 
    if(!$mail->Send()) {
